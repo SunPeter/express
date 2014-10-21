@@ -10,6 +10,7 @@ var http = require('http');
 var path = require('path');
 var fs=require('fs');
 var app = express();
+var Busboy=require("busboy");
 var config=require("./config.json")[app.get("env")];
 console.log(config.db_host);
 // all environments
@@ -115,6 +116,26 @@ app.get('/cookie', function(req, res) {
 app.get('/delcookie', function(req, res) {
     res.clearCookie("count");
     res.send("delete cookie");
+});
+app.get('/busboy', function(req, res) {
+    res.sendfile("views/busboy.html");
+});
+app.post('/busboy', function(req, res) {
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        console.log(fieldname);
+        console.log(file);
+        console.log(filename);
+        console.log(encoding);
+        console.log(mimetype);
+//        var saveTo = path.join(os.tmpDir(), path.basename(fieldname));
+//        file.pipe(fs.createWriteStream(saveTo));
+    });
+    busboy.on('finish', function() {
+        res.writeHead(200, { 'Connection': 'close' });
+        res.end("That's all folks!");
+    });
+    return req.pipe(busboy);
 });
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

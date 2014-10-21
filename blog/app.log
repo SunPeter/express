@@ -1,8 +1,3 @@
-GET /upload 304 - - 6 ms
-POST /upload.action 302 110 - 20 ms
-GET /fastfs/QQ20140719-2@2x.png 200 579187 - 10 ms
-POST /upload.action 302 110 - 13 ms
-GET /fastfs/QQ20140719-2@2x.png 200 579187 - 4 ms
-POST /upload.action 302 110 - 12 ms
-GET /fastfs/QQ20140321-1@2x.png 200 339990 - 5 ms
-GET /public/fastfs/QQ20140719-2@2x.png - - - 1704 ms
+POST /busboy 200 - - 19 ms
+GET /busboy 200 279 - 12 ms
+POST /busboy 200 - - 10 ms
