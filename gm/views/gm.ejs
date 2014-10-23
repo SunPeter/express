@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/bootstrap.min.css' />
+      <link rel="stylesheet" href="/css/gm.css"/>
+  </head>
+  <body>
+    <div class="container">
+        <div class="starter-template">
+            <img src=<%= src %> alt="" id="capture"/>
+            <label for="w">宽度</label><input type="text" name="w"/>
+            <label for="h">高度</label><input type="text" name="h"/>
+            <input type="button" value="提交" id="submit"/>
+        </div>
+        <h3>结果</h3>
+        <img alt="" id="result"/>
+    </div>
+  </body>
+  <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/gm.js"></script>
+</html>

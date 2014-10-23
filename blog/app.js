@@ -4,6 +4,7 @@
  */
 
 var express = require('express');
+var child_process=require('child_process');
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
@@ -136,6 +137,22 @@ app.post('/busboy', function(req, res) {
         res.end("That's all folks!");
     });
     return req.pipe(busboy);
+});
+app.post("/gm",function(req,res){
+    var config=[];
+    for(var item in req.query){
+        config.push(req.query[item]);
+    }
+    child_process.exec("node gm.js"+" "+config[0]+" "+config[1]+" "+config[2]+" "+config[3],function(error, stdout, stderr){
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        }
+        else{
+            res.sendfile("public/fastfs/"+config[3]);
+        }
+    });
 });
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
